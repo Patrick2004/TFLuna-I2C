@@ -12,6 +12,7 @@
  */
 
 #include <Arduino.h>    // Always include this. It's important.
+#include <Wire.h>
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 //      Definitions
@@ -113,6 +114,7 @@ class TFLI2C
 
     bool Set_Frame_Rate( uint16_t &frm, uint8_t adr);
     bool Set_I2C_Addr( uint8_t adrNew, uint8_t adr);
+    void Set_Bus( TwoWire *bus);
     bool Set_Enable( uint8_t adr);
     bool Set_Disable( uint8_t adr);
     bool Soft_Reset( uint8_t adr);  // Reset and reboot
@@ -131,5 +133,7 @@ class TFLI2C
     uint8_t tfStatus;        // system error status: READY = 0
     uint8_t dataArray[ 6];
     uint8_t regReply;
+
+    TwoWire* _Wire;
 };
 
